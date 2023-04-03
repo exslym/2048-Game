@@ -1,0 +1,182 @@
+/* fonts */
+$font-default: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+  'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+$clr-white: #ffffff;
+$clr-dark: #0c181d;
+
+/* colors */
+$clr-default: #f5f5f5;
+/* ================ */
+
+$clr-grad: linear-gradient(to right, #041721 0%, #090b18 50%, #110710 95%);
+/* ================ */
+
+/* desktop scrollbar width */
+$scrollbar: 15px;
+
+/* font-sizes */
+$fs-default: clamp(15px, 0.9375vw, 18px);
+/* ================ */
+$fs-80: clamp(20px, 4.166666vw, 80px);
+$fs-56: clamp(26px, 2.916666vw, 56px);
+$fs-42: clamp(21px, 1.90909vw, 42px);
+$fs-36: clamp(18px, 1.875vw, 36px);
+$fs-32: clamp(18px, 1.666666vw, 32px);
+$fs-24: clamp(16px, 1.25vw, 24px);
+$fs-22: clamp(15px, 1.145833vw, 22px);
+$fs-20: clamp(14px, 1.041666vw, 20px);
+$fs-18: clamp(14px, 0.9375vw, 18px);
+$fs-16: clamp(13px, 0.833333vw, 16px);
+$fs-14: clamp(12px, 0.729166vw, 14px);
+$fs-12: 12px;
+
+.fs-80 {
+  @include adapt(font-size, 20, 80);
+}
+.fs-56 {
+  @include adapt(font-size, 26, 56);
+}
+.fs-42 {
+  @include adapt(font-size, 21, 42);
+}
+.fs-36 {
+  @include adapt(font-size, 18, 36);
+}
+.fs-32 {
+  @include adapt(font-size, 18, 32);
+}
+.fs-28 {
+  @include adapt(font-size, 14, 28);
+}
+.fs-24 {
+  @include adapt(font-size, 16, 24);
+}
+.fs-22 {
+  @include adapt(font-size, 15, 22);
+}
+.fs-20 {
+  @include adapt(font-size, 14, 20);
+}
+.fs-18 {
+  @include adapt(font-size, 14, 18);
+}
+.fs-16 {
+  @include adapt(font-size, 13, 16);
+}
+.fs-14 {
+  @include adapt(font-size, 12, 14);
+}
+.fs-12 {
+  font-size: 12px;
+}
+.fs-10 {
+  font-size: 10px;
+}
+
+/* margins */
+.mt-4 {
+  margin-top: 4px;
+}
+.mb-4 {
+  margin-bottom: 4px;
+}
+.mt-8 {
+  @include adapt(margin-top, 6, 8);
+}
+.mb-8 {
+  @include adapt(margin-bottom, 6, 8);
+}
+.mt-10 {
+  @include adapt(margin-top, 8, 10);
+}
+.mb-10 {
+  @include adapt(margin-bottom, 8, 10);
+}
+.mt-12 {
+  @include adapt(margin-top, 10, 12);
+}
+.mb-12 {
+  @include adapt(margin-bottom, 10, 12);
+}
+.mt-14 {
+  @include adapt(margin-top, 10, 14);
+}
+.mb-14 {
+  @include adapt(margin-bottom, 10, 14);
+}
+.mt-16 {
+  @include adapt(margin-top, 10, 16);
+}
+.mb-16 {
+  @include adapt(margin-bottom, 10, 16);
+}
+.mt-20 {
+  @include adapt(margin-top, 10, 20);
+}
+.mb-20 {
+  @include adapt(margin-bottom, 10, 20);
+}
+.mt-24 {
+  @include adapt(margin-top, 16, 24);
+}
+.mb-24 {
+  @include adapt(margin-bottom, 16, 24);
+}
+.mt-30 {
+  @include adapt(margin-top, 14, 30);
+}
+.mb-30 {
+  @include adapt(margin-bottom, 14, 30);
+}
+.mt-32 {
+  @include adapt(margin-top, 14, 32);
+}
+.mb-32 {
+  @include adapt(margin-bottom, 14, 32);
+}
+.mt-40 {
+  @include adapt(margin-top, 20, 40);
+}
+.mb-40 {
+  @include adapt(margin-bottom, 20, 40);
+}
+.mt-48 {
+  @include adapt(margin-top, 24, 48);
+}
+.mb-48 {
+  @include adapt(margin-bottom, 24, 48);
+}
+.mt-64 {
+  @include adapt(margin-top, 30, 64);
+}
+.mb-64 {
+  @include adapt(margin-bottom, 30, 64);
+}
+.mt-80 {
+  @include adapt(margin-top, 40, 80);
+}
+.mb-80 {
+  @include adapt(margin-bottom, 40, 80);
+}
+.mt-120 {
+  @include adapt(margin-top, 60, 120);
+}
+.mb-120 {
+  @include adapt(margin-bottom, 60, 120);
+}
+.mt-140 {
+  @include adapt(margin-top, 60, 140);
+}
+.mb-140 {
+  @include adapt(margin-bottom, 60, 140);
+}
+.mt-190 {
+  @include adapt(margin-top, 80, 190);
+}
+.mb-190 {
+  @include adapt(margin-bottom, 80, 190);
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
