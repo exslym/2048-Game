@@ -3,6 +3,9 @@ let score = 0;
 let rows = 4;
 let columns = 4;
 
+const titleText = document.getElementById('title');
+const scoreNum = document.getElementById('score');
+
 export const game = function setGame() {
   board = [
     [0, 0, 0, 0],
@@ -55,6 +58,13 @@ function handleInput(key) {
   }
   setTwo();
   document.getElementById('score').innerText = score;
+
+  if (score % 2048 === 0) {
+    titleText.innerText = 'Congratulations!';
+    scoreNum.style.color = 'lightgreen';
+  } else {
+    titleText.innerText = '2048';
+  }
   setupInput();
 }
 
@@ -94,7 +104,7 @@ function updateTile(tile, num) {
   tile.classList.value = ''; // clear the classList
   tile.classList.add('tile');
   if (num > 0) {
-    const bgLightness = 100 - Math.log2(num) * 9;
+    const bgLightness = 100 - Math.log2(num) * 7;
     tile.innerText = num.toString();
     tile.classList.add('colored');
     tile.style.setProperty('--bg-ligthness', `${bgLightness}%`);

@@ -38,6 +38,19 @@ body {
   width: 100%;
 }
 
+h1,
+h2 {
+  margin: 0;
+  padding: 0;
+  font-feature-settings: 'ordn' on;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+  @include adapt(font-size, 20, 52, 500);
+}
+
+hr {
+  width: 96%;
+}
+
 #board {
   margin: 0 auto;
   @include adapt(margin-top, 15, 20, 500);
@@ -68,7 +81,7 @@ body {
   border-radius: 0.5vmin;
   background-color: hsla(200, 5%, 50%, 0.9);
 
-  @include adapt(font-size, 20, 42, 500);
+  @include adapt(font-size, 20, 40, 500);
   font-weight: bold;
   color: hsl(20, 25%, 10%);
 
@@ -88,20 +101,12 @@ body {
   .tile {
     width: 20vmin;
     height: 20vmin;
+    font-size: 1.8em;
   }
-}
-
-h1,
-h2 {
-  margin: 0;
-  padding: 0;
-  font-feature-settings: 'ordn' on;
-  font-feature-settings: 'pnum' on, 'lnum' on;
-  @include adapt(font-size, 26, 56, 500);
-}
-
-hr {
-  width: 96%;
+  h1,
+  h2 {
+    font-size: 2.4em;
+  }
 }
 
 /* colored tiles */
