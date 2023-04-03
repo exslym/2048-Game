@@ -17,8 +17,6 @@ $clr-grad: linear-gradient(to right, #041721 0%, #090b18 50%, #110710 95%);
 
 body {
   width: 100%;
-  height: 100vh;
-  max-width: 400px;
   background: $clr-grad;
 
   font-family: $font-default;
@@ -26,38 +24,42 @@ body {
   font-weight: 400;
   color: $clr-white;
   text-align: center;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
+}
+.container {
   margin: 0 auto;
+  @include adapt(margin-top, 10, 20, 500);
+  @include adaptMult(padding, 0 0, 10 20, 500);
+  @include adapt(max-width, 380, 440, 500);
+  width: 100%;
 }
 
 #board {
   margin: 0 auto;
-  margin-top: 20px;
+  @include adapt(margin-top, 15, 20, 500);
   @include adapt(padding, 4, 8, 500);
 
   background-color: transparent;
   border-radius: 0.75vmin;
+  width: 100%;
 
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
   @include adapt(grid-gap, 4, 8, 500);
+  align-items: center;
+  & > * {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25em;
+    margin: 0 auto;
+  }
 }
 
 .tile {
-  margin: 0;
-  padding: 0.25em;
+  @include adapt(width, 78, 90, 500);
+  @include adapt(height, 78, 90, 500);
 
-  width: 100%;
-  height: 100%;
-  @include adapt(min-width, 75, 90, 500);
-  @include adapt(min-height, 75, 90, 500);
-  max-width: 90px;
-  max-height: 90px;
   border-radius: 0.5vmin;
   background-color: hsla(200, 5%, 50%, 0.9);
 
@@ -65,18 +67,22 @@ body {
   font-weight: bold;
   color: hsl(20, 25%, 10%);
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   transition: 0.25s;
   animation: show 0.2s;
 }
 
 @media screen and (max-width: 414px) {
+  .container {
+    padding: 0px 15px;
+  }
   #board {
     padding: 4px;
     grid-gap: 4px;
+    max-width: 85.35vmin;
+  }
+  .tile {
+    width: 20vmin;
+    height: 20vmin;
   }
 }
 
@@ -88,8 +94,9 @@ h2 {
   font-feature-settings: 'pnum' on, 'lnum' on;
   @include adapt(font-size, 26, 56, 500);
 }
+
 hr {
-  width: 100%;
+  width: 96%;
 }
 
 /* colored tiles */
