@@ -12,20 +12,24 @@ $clr-dark: #0c181d;
 }
 
 body {
+  width: 100%;
+  height: 100vh;
+  background-color: $clr-dark;
+
   font-family: $font-default;
   font-style: normal;
   font-weight: 400;
+  font-size: 2em;
+  color: $clr-white;
   text-align: center;
-  font-size: 32px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100vh;
-  @media (prefers-color-scheme: dark) {
+  /*   @media (prefers-color-scheme: dark) {
     background-color: $clr-dark;
     color: $clr-white;
-  }
+  } */
 }
 a {
   text-decoration: none !important;
