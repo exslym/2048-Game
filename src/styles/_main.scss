@@ -1,15 +1,50 @@
+/* fonts */
+$font-default: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+  'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+$clr-white: #f3f3f3;
+$clr-dark: #0c181d;
+
+/* colors */
+$clr-default: #f5f5f5;
+/* ================ */
+$clr-grad: linear-gradient(to right, #041721 0%, #090b18 50%, #110710 95%);
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  max-width: 400px;
+  background: $clr-grad;
+
+  font-family: $font-default;
+  font-style: normal;
+  font-weight: 400;
+  color: $clr-white;
+  text-align: center;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto;
+}
+
 #board {
   margin: 0 auto;
   margin-top: 20px;
   @include adapt(padding, 4, 8, 500);
 
-  @include adapt(width, 320, 400, 500);
-  @include adapt(height, 320, 400, 500);
-  background-color: #bbada0;
+  background-color: transparent;
+  border-radius: 0.75vmin;
 
   display: grid;
-  grid-template-columns: repeat(4, auto);
-  grid-template-rows: repeat(4, auto);
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   @include adapt(grid-gap, 4, 8, 500);
 }
 
@@ -21,14 +56,21 @@
   height: 100%;
   @include adapt(min-width, 75, 90, 500);
   @include adapt(min-height, 75, 90, 500);
-  background-color: #cdc1b5;
+  max-width: 90px;
+  max-height: 90px;
+  border-radius: 0.5vmin;
+  background-color: hsla(200, 5%, 50%, 0.9);
 
   @include adapt(font-size, 20, 42, 500);
   font-weight: bold;
+  color: hsl(20, 25%, 10%);
 
   display: flex;
   justify-content: center;
   align-items: center;
+
+  transition: 0.25s;
+  animation: show 0.2s;
 }
 
 @media screen and (max-width: 414px) {
@@ -40,6 +82,10 @@
 
 h1,
 h2 {
+  margin: 0;
+  padding: 0;
+  font-feature-settings: 'ordn' on;
+  font-feature-settings: 'pnum' on, 'lnum' on;
   @include adapt(font-size, 26, 56, 500);
 }
 hr {
@@ -47,56 +93,19 @@ hr {
 }
 
 /* colored tiles */
+.colored {
+  background-color: hsl(25, 60%, var(--bg-ligthness));
+  color: hsl(20, 25%, var(--text-ligthness));
+}
 
-.x2 {
-  background-color: #eee4da;
-  color: #727371;
-}
-.x4 {
-  background-color: #ece0ca;
-  color: #727371;
-}
-.x8 {
-  background-color: #f4b17a;
-  color: white;
-}
-.x16 {
-  background-color: #f59575;
-  color: white;
-}
-.x32 {
-  background-color: #f57c5f;
-  color: white;
-}
-.x64 {
-  background-color: #f65d3b;
-  color: white;
-}
-.x128 {
-  background-color: #edce71;
-  color: white;
-}
-.x256 {
-  background-color: #edcc63;
-  color: white;
-}
-.x512 {
-  background-color: #edc651;
-  color: white;
-}
-.x1024 {
-  background-color: #eec744;
-  color: white;
-}
-.x2048 {
-  background-color: #ecc230;
-  color: white;
-}
-.x4096 {
-  background-color: #fe3d3d;
-  color: white;
-}
-.x8192 {
-  background-color: #ff2020;
-  color: white;
+/* animation */
+@keyframes show {
+  0% {
+    opacity: 0.25;
+    scale: 0;
+  }
+  100% {
+    opacity: 1;
+    scale: 1;
+  }
 }

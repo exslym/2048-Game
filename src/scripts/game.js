@@ -29,12 +29,11 @@ function updateTile(tile, num) {
   tile.classList.value = ''; // clear the classList
   tile.classList.add('tile');
   if (num > 0) {
+    const bgLightness = 100 - Math.log2(num) * 9;
     tile.innerText = num.toString();
-    if (num <= 4096) {
-      tile.classList.add('x' + num.toString());
-    } else {
-      tile.classList.add('x8192');
-    }
+    tile.classList.add('colored');
+    tile.style.setProperty('--bg-ligthness', `${bgLightness}%`);
+    tile.style.setProperty('--text-ligthness', `${bgLightness < 50 ? 90 : 10}%`);
   }
 }
 
@@ -171,7 +170,10 @@ function setTwo() {
       board[r][c] = 2;
       let tile = document.getElementById(r.toString() + '-' + c.toString());
       tile.innerText = '2';
-      tile.classList.add('x2');
+      tile.classList.add('colored');
+      tile.style.setProperty('--bg-ligthness', '90%');
+      tile.style.setProperty('--text-ligthness', '10%');
+      // tile.classList.add('x2');
       found = true;
     }
   }
