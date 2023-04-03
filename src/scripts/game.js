@@ -22,7 +22,72 @@ export const game = function setGame() {
   // create 2 to begin the game
   setTwo();
   setTwo();
+  // action on keyboard arrows (desktop) or slides (mobile)
+  setupInput();
 };
+
+function setupInput() {
+  window.addEventListener('keyup', handleKeydown, { once: true });
+  window.addEventListener('touchstart', handleTouchStart, { once: true, passive: false });
+}
+
+function handleKeydown(e) {
+  handleInput(e.key);
+}
+
+function handleInput(key) {
+  switch (key) {
+    case 'ArrowLeft':
+      slideLeft();
+      break;
+    case 'ArrowRight':
+      slideRight();
+      break;
+    case 'ArrowUp':
+      slideUp();
+      break;
+    case 'ArrowDown':
+      slideDown();
+      break;
+    default:
+      setupInput();
+      return;
+  }
+  setTwo();
+  document.getElementById('score').innerText = score;
+  setupInput();
+}
+
+function handleTouchStart(e) {
+  e.preventDefault();
+
+  let touchStartData = e.changedTouches[0];
+  let touchStartDate = new Date();
+
+  window.addEventListener(
+    'touchend',
+    (evt) => {
+      evt.preventDefault();
+      let touchEndData = evt.changedTouches[0];
+
+      if (new Date() - touchStartDate > 1000) {
+        setupInput();
+        return;
+      }
+
+      let deltaX = touchEndData.pageX - touchStartData.pageX;
+      let deltaY = touchEndData.pageY - touchStartData.pageY;
+
+      if (Math.abs(deltaX) >= 55) {
+        handleInput(deltaX > 0 ? 'ArrowRight' : 'ArrowLeft');
+      } else if (Math.abs(deltaY) >= 55) {
+        handleInput(deltaY > 0 ? 'ArrowDown' : 'ArrowUp');
+      }
+      setupInput();
+    },
+    { once: true },
+  );
+}
 
 function updateTile(tile, num) {
   tile.innerText = '';
@@ -36,28 +101,6 @@ function updateTile(tile, num) {
     tile.style.setProperty('--text-ligthness', `${bgLightness < 50 ? 90 : 10}%`);
   }
 }
-
-document.addEventListener('keyup', (e) => {
-  switch (e.code) {
-    case 'ArrowLeft':
-      slideLeft();
-      setTwo();
-      break;
-    case 'ArrowRight':
-      slideRight();
-      setTwo();
-      break;
-    case 'ArrowUp':
-      slideUp();
-      setTwo();
-      break;
-    case 'ArrowDown':
-      slideDown();
-      setTwo();
-      break;
-  }
-  document.getElementById('score').innerText = score;
-});
 
 function filterZero(row) {
   return row.filter((num) => num !== 0); // create new array of all nums !== 0
@@ -173,7 +216,6 @@ function setTwo() {
       tile.classList.add('colored');
       tile.style.setProperty('--bg-ligthness', '90%');
       tile.style.setProperty('--text-ligthness', '10%');
-      // tile.classList.add('x2');
       found = true;
     }
   }
