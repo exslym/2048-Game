@@ -28,21 +28,34 @@
 
     <title>2048</title>
     
-    <script type="module" crossorigin src="./assets/js/main-01ce2b01.js"></script>
-    <link rel="stylesheet" href="./assets/css/index-7547ec59.css">
+    <script type="module" crossorigin src="./assets/js/main-854c22b1.js"></script>
+    <link rel="stylesheet" href="./assets/css/index-b50176ec.css">
     <script type="module">import.meta.url;import("_").catch(()=>1);async function* g(){};window.__vite_is_modern_browser=true;</script>
     <script type="module">!function(){if(window.__vite_is_modern_browser)return;console.warn("vite: loading legacy chunks, syntax error above and the same error below should be ignored");var e=document.getElementById("vite-legacy-polyfill"),n=document.createElement("script");n.src=e.src,n.onload=function(){System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))},document.body.appendChild(n)}();</script>
   </head>
 
   <body>
     <div class="container">
+      <p class="record hidden">Record: <span class="scoreRecord">0</span></p>
       <h1 id="title">2048</h1>
       <hr />
-      <h2>Score: <span id="score">0</span></h2>
+      <h2>Score: <span class="score">0</span></h2>
       <div id="board"></div>
+      <div class="alert hidden">
+        <h3>Congratulations!!! <br />you scored <br /><span class="currentScore"></span></h3>
+        <button class="ok" type="submit">
+          <p>Continue</p>
+        </button>
+      </div>
+      <div class="warning hidden">
+        <h2>The End</h2>
+        <button class="restart" type="submit">
+          <p>Restart</p>
+        </button>
+      </div>
     </div>
     <script nomodule>!function(){var e=document,t=e.createElement("script");if(!("noModule"in t)&&"onbeforeload"in t){var n=!1;e.addEventListener("beforeload",(function(e){if(e.target===t)n=!0;else if(!e.target.hasAttribute("nomodule")||!n)return;e.preventDefault()}),!0),t.type="module",t.src=".",e.head.appendChild(t),t.remove()}}();</script>
     <script nomodule crossorigin id="vite-legacy-polyfill" src="./assets/js/polyfills-legacy-47b9203e.js"></script>
-    <script nomodule crossorigin id="vite-legacy-entry" data-src="./assets/js/main-legacy-10310bad.js">System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))</script>
+    <script nomodule crossorigin id="vite-legacy-entry" data-src="./assets/js/main-legacy-8746ee36.js">System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))</script>
   </body>
 </html>
