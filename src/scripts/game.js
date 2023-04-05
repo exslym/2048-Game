@@ -2,11 +2,31 @@ let board;
 let score = 0;
 let rows = 4;
 let columns = 4;
+let recordValue;
 
-const titleText = document.getElementById('title');
-const scoreNum = document.getElementById('score');
+const content = document.getElementById('board');
+const scoreNum = document.querySelector('.score');
+const currentScore = document.querySelector('.currentScore');
+const record = document.querySelector('.record');
+const scoreRecordValue = document.querySelector('.scoreRecord');
+const alertScreen = document.querySelector('.alert');
+const warningScreen = document.querySelector('.warning');
+const button = document.querySelector('.ok');
+const restart = document.querySelector('.restart');
 
 export const game = function setGame() {
+  // localStorage.removeItem('scoreRecord');
+
+  // create start board
+  createBoard();
+  // create 2 to begin the game
+  setTwo();
+  setTwo();
+  // action on keyboard arrows (desktop) or slides (mobile)
+  setupInput();
+};
+
+function createBoard() {
   board = [
     [0, 0, 0, 0],
     [0, 0, 0, 0],
@@ -22,16 +42,26 @@ export const game = function setGame() {
       document.getElementById('board').append(tile);
     }
   }
-  // create 2 to begin the game
-  setTwo();
-  setTwo();
-  // action on keyboard arrows (desktop) or slides (mobile)
-  setupInput();
-};
+  if (!localStorage.getItem('scoreRecord')) {
+    localStorage.setItem('scoreRecord', 0);
+  }
+}
+
+function eraseBoard() {
+  Array.from(document.getElementById('board').children).forEach((el) => {
+    el.remove();
+  });
+  score = 0;
+  scoreNum.style.color = 'white';
+}
+
+let state = true;
 
 function setupInput() {
   window.addEventListener('keyup', handleKeydown, { once: true });
-  window.addEventListener('touchstart', handleTouchStart, { once: true, passive: false });
+  if (!content.classList.contains('inactive')) {
+    window.addEventListener('touchstart', handleTouchStart, { once: true, passive: false });
+  }
 }
 
 function handleKeydown(e) {
@@ -57,13 +87,42 @@ function handleInput(key) {
       return;
   }
   setTwo();
-  document.getElementById('score').innerText = score;
+  document.querySelector('.score').innerText = score;
 
-  if (score % 2048 === 0) {
-    titleText.innerText = 'Congratulations!';
+  // if (score % 8 === 0 && score !== 0) {
+  //   scoreNum.style.color = 'lightgreen';
+  //   if (state === true) {
+  //     alertScreen.classList.remove('hidden');
+  //     content.classList.add('inactive');
+  //     currentScore.innerText = score;
+  //   }
+  //   state = false;
+  //   button.addEventListener('click', (e) => {
+  //     e.preventDefault();
+  //     alertScreen.classList.add('hidden');
+  //     content.classList.remove('inactive');
+  //     window.addEventListener('touchstart', handleTouchStart, { once: true, passive: false });
+  //   });
+  // } else {
+  //   state = true;
+  // }
+
+  if (score % 2048 === 0 && score !== 0) {
     scoreNum.style.color = 'lightgreen';
+    if (state === true) {
+      alertScreen.classList.remove('hidden');
+      content.classList.add('inactive');
+      currentScore.innerText = score;
+    }
+    state = false;
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      alertScreen.classList.add('hidden');
+      content.classList.remove('inactive');
+      window.addEventListener('touchstart', handleTouchStart, { once: true, passive: false });
+    });
   } else {
-    titleText.innerText = '2048';
+    state = true;
   }
   setupInput();
 }
@@ -197,15 +256,37 @@ function slideDown() {
   }
 }
 
+let count = 0;
 function hasEmptyTile() {
-  let count = 0;
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < columns; c++) {
       if (board[r][c] === 0) {
         // at least one zero in the board
+        count = 0;
         return true;
       }
     }
+  }
+  count += 1;
+  if (count === 1) {
+    recordValue = score;
+    warningScreen.classList.remove('hidden');
+    content.classList.add('inactive');
+    restart.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (+localStorage.getItem('scoreRecord') <= recordValue) {
+        scoreRecordValue.innerText = recordValue;
+        localStorage.setItem('scoreRecord', recordValue);
+      }
+      warningScreen.classList.add('hidden');
+      content.classList.remove('inactive');
+      window.addEventListener('touchstart', handleTouchStart, { once: true, passive: false });
+      record.classList.remove('hidden');
+      count = 0;
+      document.querySelector('.score').innerText = 0;
+      eraseBoard();
+      createBoard();
+    });
   }
   return false;
 }

@@ -32,10 +32,23 @@
 
   <body>
     <div class="container">
+      <p class="record hidden">Record: <span class="scoreRecord">0</span></p>
       <h1 id="title">2048</h1>
       <hr />
-      <h2>Score: <span id="score">0</span></h2>
+      <h2>Score: <span class="score">0</span></h2>
       <div id="board"></div>
+      <div class="alert hidden">
+        <h3>Congratulations!!! <br />you scored <br /><span class="currentScore"></span></h3>
+        <button class="ok" type="submit">
+          <p>Continue</p>
+        </button>
+      </div>
+      <div class="warning hidden">
+        <h2>The End</h2>
+        <button class="restart" type="submit">
+          <p>Restart</p>
+        </button>
+      </div>
     </div>
   </body>
 </html>
