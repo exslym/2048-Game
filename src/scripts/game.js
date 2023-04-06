@@ -15,6 +15,9 @@ const restart = document.querySelector('.restart');
 
 export const game = function setGame() {
   // localStorage.removeItem('scoreRecord');
+  if (!localStorage.getItem('scoreRecord')) {
+    localStorage.setItem('scoreRecord', 0);
+  }
 
   // create start board
   createBoard();
@@ -40,9 +43,6 @@ function createBoard() {
       updateTile(tile, num);
       document.getElementById('board').append(tile);
     }
-  }
-  if (!localStorage.getItem('scoreRecord')) {
-    localStorage.setItem('scoreRecord', 0);
   }
 }
 
@@ -128,31 +128,12 @@ if (button) {
   });
 }
 
-if (restart) {
-  restart.addEventListener('click', (e) => {
-    e.preventDefault();
-    if (+localStorage.getItem('scoreRecord') <= recordValue) {
-      scoreRecordValue.innerText = recordValue;
-      localStorage.setItem('scoreRecord', recordValue);
-    }
-    warningScreen.classList.add('hidden');
-    content.classList.remove('inactive');
-    window.addEventListener('touchstart', handleTouchStart, { once: true, passive: false });
-    record.classList.remove('hidden');
-    count = 0;
-    document.querySelector('.score').innerText = 0;
-    eraseBoard();
-    createBoard();
-  });
-}
-
 function showAlert(number) {
   alertScreen.classList.remove('hidden');
   content.classList.add('inactive');
   currentScore.innerText = number;
 }
 
-let x1024 = true;
 let x2048 = true;
 let x4096 = true;
 let x8192 = true;
@@ -164,11 +145,8 @@ function checkScore(num) {
     if (document.querySelector('.tile')) {
       document.querySelectorAll('.tile').forEach((element) => {
         if (+element.textContent !== 0) {
-          if (+element.textContent % 1024 === 0) {
-            if (+element.textContent === 1024 && x1024 === true) {
-              showAlert(+element.textContent);
-              x1024 = false;
-            } else if (+element.textContent === 2048 && x2048 === true) {
+          if (+element.textContent % 2048 === 0) {
+            if (+element.textContent === 2048 && x2048 === true) {
               showAlert(+element.textContent);
               x2048 = false;
             } else if (+element.textContent === 4096 && x4096 === true) {
@@ -306,6 +284,24 @@ function hasEmptyTile() {
     recordValue = score;
     warningScreen.classList.remove('hidden');
     content.classList.add('inactive');
+
+    if (restart) {
+      restart.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (+localStorage.getItem('scoreRecord') <= recordValue) {
+          localStorage.setItem('scoreRecord', recordValue);
+        }
+        scoreRecordValue.innerText = `${localStorage.getItem('scoreRecord')}`;
+        warningScreen.classList.add('hidden');
+        content.classList.remove('inactive');
+        window.addEventListener('touchstart', handleTouchStart, { once: true, passive: false });
+        record.classList.remove('hidden');
+        count = 0;
+        document.querySelector('.score').innerText = '0';
+        eraseBoard();
+        createBoard();
+      });
+    }
   }
   return false;
 }
