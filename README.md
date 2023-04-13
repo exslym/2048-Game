@@ -1,3 +1,11 @@
+## [2048 Game](https://exslym.github.io/2048-Game/)
+
+[![preview](https://github.com/exslym/2048-Game/blob/main/public/preview.jpg)](https://exslym.github.io/2048-Game/)
+
+### This is a popular puzzle game where the player must combine numbered tiles to reach the ultimate goal of creating a tile with the number 2048. Made with JavaScript.
+
+---
+
 ### Installation
 
 ```
@@ -43,9 +51,3 @@ This adds gh-pages branch to your project github repository, deploys built proje
 
 - All image files (svg, png, jpg/jpeg, tiff, gif, webp, avif) gets compressed with lossless quality
   <br />via [vite-plugin-image-optimizer](https://github.com/FatehAK/vite-plugin-image-optimizer).
-
-Place all external connected js files (e.g. jQuery and others) in `./public/tools` and provide them path in each \*.html page file (like this: `<script src="tools/jquery-3.6.3.min.js"></script>`).
-
-Place all external connected css files (e.g. normalize.min.css and others) in `./src/assets/tools` and provide them path in index.scss file (like this: `@import url('../assets/tools/normalize.min.css');`).
-
-Write the `PROJECT NAME` and each `PAGE TITLE` in the `<head>` section of html files. They will be used in Google Analytics code below.
